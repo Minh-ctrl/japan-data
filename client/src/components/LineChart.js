@@ -19,17 +19,34 @@ class LineChart extends Component{
     super(props);
   };
   render(){
-  console.log('start');
   const passingData = this.props.data
-  console.log(passingData);
-  console.log(passingData.Age.age[0]);
-  // console.log(labels.map(() => passingData.Age.age[0]));
+  // console.log(passingData);
+  // console.log(passingData.Age.age[0])
+    let year = Object.values(passingData.Age.age[0]);
+    let obj = [];
+  for (let i = 0; i< year.length; i++)
+  {
+		obj.push(parseFloat(year[i]));
+  }
+  console.log(obj)
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: `Japan's Average age 1920-2010`,
+      },
+    },
+  };
   const data = {
     labels,
     datasets: [
       {
         label: 'All Japan',
-        // data: labels.map(() => passingData.Age.age[0]),
+        data: obj,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
@@ -39,10 +56,10 @@ class LineChart extends Component{
       //   borderColor: 'rgb(53, 162, 235)',
       //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
       // },
-    ],
+    ]
   };
 
-    return <div>test</div>
+    return <Line options={options} data={data}/>
   }
 }
 export default LineChart;
