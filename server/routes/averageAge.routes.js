@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const fetchData = require('../controllers/ageAverage.controller');
+const fetchData = require('../controllers/controller');
 
-router.get('/fetch-averageAge', fetchData.fetchAgeData);
-
+router.get('/fetch-population', fetchData.fetchAgeData);
 module.exports = router; 

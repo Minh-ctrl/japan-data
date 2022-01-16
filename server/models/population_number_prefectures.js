@@ -1,108 +1,92 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('average_age_both_sexes', {
+  return sequelize.define('population_number_prefectures', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      primaryKey: true
+    },
     japanesename: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: "average_age_both_sexes_japanesename_key"
+      unique: "population_number_prefectures_japanesename_key"
     },
     englishname: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: "average_age_both_sexes_englishname_key"
+      unique: "population_number_prefectures_englishname_key"
     },
     year1920: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1930: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1940: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1950: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    year1955: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1960: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    year1965: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1970: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    year1975: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1980: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    year1985: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1990: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year1995: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year2000: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year2005: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     year2010: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    id: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
+      allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'average_age_both_sexes',
+    tableName: 'population_number_prefectures',
     schema: 'public',
     timestamps: false,
     indexes: [
       {
-        name: "average_age_both_sexes_englishname_key",
+        name: "population_number_prefectures_englishname_key",
         unique: true,
         fields: [
           { name: "englishname" },
         ]
       },
       {
-        name: "average_age_both_sexes_japanesename_key",
+        name: "population_number_prefectures_japanesename_key",
         unique: true,
         fields: [
           { name: "japanesename" },
         ]
       },
       {
-        name: "average_age_both_sexes_pkey",
+        name: "population_number_prefectures_pkey",
         unique: true,
         fields: [
           { name: "id" },

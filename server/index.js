@@ -12,22 +12,12 @@ const router = require('./routes/averageAge.routes');
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(middlewareFilter);
+// app.use(middlewareFilter);
 app.use(router);
 
 sequelize.sync({force: false}).then(
     ()=>{
         app.listen(port, () => console.log(`Listening on port ${port}`));
-        app.get('/', (req, res) => {
-            // res.send('Hello World!')
-            res.json({
-                "successful": "true",
-                "message": "Successfully created",
-                "data": {
-                      "name": "Joe",
-                      "year": 1
-                 }
-             })
+             
         })
-    }
-);
+    
