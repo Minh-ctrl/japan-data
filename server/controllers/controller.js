@@ -1,20 +1,31 @@
 // const { DataTypes } = require('sequelize/dist');
-const initmodels= require('../models/init-models');
+const _ = require("underscore");
+const initmodels = require("../models/init-models");
 // const {Sequelize} = require('sequelize');
-const sequelize = require('../utils/database');
+const sequelize = require("../utils/database");
 // const average_age_both_sexes= require('../models/average_age_both_sexes')(sequelize, DataTypes);
 let models = initmodels(sequelize);
-exports.fetchAgeData= async(req,res)=>{
-    let age = await models.average_age_both_sexes.findAll({
-        attributes: 
-        ['year1920', 'year1930', 'year1940', 'year1950', 'year1955', 'year1960', 'year1965', 'year1970',
-        'year1975', 'year1980', 'year1985', 'year1990', 'year1995', 'year2000', 'year2005', 'year2010']
-    });
-    let ageName= await models.average_age_both_sexes.findAll({
-        attributes: ['japanesename', 'englishname'],
-    })
-
-    let population= await models.population_number_prefectures.findAll()
-    let db = {Age: {age, ageName}, Population: population}
-    res.json(db);
+exports.fetchAgeData = async (req, res) => {
+  let age = await models.average_age_prefecture.findAll();
+  const ageGrouped = _.groupBy(age, (prefecture) => prefecture.english_name);
+  let obj;
+  let ageData = [];
+  for (const property in ageGrouped) {
+    let newObj = {};
+    for (let i = 0; i < ageGrouped[property].length; i++) {
+      newObj[ageGrouped[property][i].year] =
+        ageGrouped[property][i].avg_population;
+    }
+    obj = {
+      description: {
+        english_name: ageGrouped[property][0].english_name,
+        japanese_name: ageGrouped[property][0].japanese_name,
+      },
+      data: newObj,
+    };
+    ageData.push(obj);
+  }
+  let population = await models.population_number_prefectures.findAll();
+  let db = { ageData, population };
+  res.json(db);
 };

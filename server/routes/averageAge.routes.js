@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const fetchData = require('../controllers/controller');
+const fetchData = require("../controllers/controller");
 
-router.get('/fetch-population', fetchData.fetchAgeData);
-module.exports = router; 
+router.get("/fetch-population", fetchData.fetchAgeData);
+module.exports = router;
