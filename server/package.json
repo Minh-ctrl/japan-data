@@ -8,5 +8,9 @@
     "sequelize": "^6.13.0",
     "sequelize-auto": "^0.8.8",
     "underscore": "^1.13.2"
+  },
+  "scripts": {
+    "delete": "sudo pkill -u postgres",
+    "start": "nodemon index.js"
   }
 }

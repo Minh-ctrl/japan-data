@@ -14,7 +14,7 @@ exports.fetchAgeData = async (req, res) => {
     let newObj = {};
     for (let i = 0; i < ageGrouped[property].length; i++) {
       newObj[ageGrouped[property][i].year] =
-        ageGrouped[property][i].avg_population;
+        parseFloat(ageGrouped[property][i].avg_population);
     }
     obj = {
       description: {
