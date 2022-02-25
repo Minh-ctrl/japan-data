@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  return average_age_prefecture.init(sequelize, DataTypes);
+  return industry_employment_population.init(sequelize, DataTypes);
 }
 
-class average_age_prefecture extends Sequelize.Model {
+class industry_employment_population extends Sequelize.Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -12,30 +12,26 @@ class average_age_prefecture extends Sequelize.Model {
       allowNull: false,
       primaryKey: true
     },
-    japanese_name: {
-      type: DataTypes.STRING(100),
-      allowNull: false
-    },
-    english_name: {
-      type: DataTypes.STRING(100),
+    industry: {
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     year: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    avg_population: {
-      type: DataTypes.DECIMAL,
+    population: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'average_age_prefecture',
+    tableName: 'industry_employment_population',
     schema: 'public',
     timestamps: false,
     indexes: [
       {
-        name: "average_age_prefecture_pkey",
+        name: "industry_employment_population_pkey",
         unique: true,
         fields: [
           { name: "id" },

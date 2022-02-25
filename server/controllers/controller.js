@@ -26,6 +26,7 @@ exports.fetchAgeData = async (req, res) => {
     ageData.push(obj);
   }
   let population = await models.population_number_prefectures.findAll();
-  let db = { ageData, population };
+  let industry  = await models.industry_employment_population.findAll();
+  let db = { ageData, population, industry };
   res.json(db);
 };
