@@ -1,18 +1,19 @@
-<script >
+<script setup>
 import axios from 'axios';
-import { ref , computed } from 'vue';
-const result = ref(null);
-const log = ref('what is going on');
-console.log(log.value)
-    export default{ 
-        setup(){
-        axios.get('http://localhost:5000/fetch-population')
-            .then(data => result.value = data);
-            return {result}
-        }
-    }
-
+import { ref , computed, onMounted } from 'vue';
+import BarChart from './BarChart.vue';
+const ageData= ref(null);
+async function pressed(){
+    const info = await fetch('http://localhost:5000/fetch-population');
+    const json = await info.json();
+    ageData.value = json.ageData;
+}
 </script>
 <template>
-    <div>{{result}}</div>
+    <div>
+        <button @click="pressed">press me</button>
+            <div v-if="ageData">
+                <BarChart :ageData="ageData"/>
+            </div>
+    </div>
 </template>
